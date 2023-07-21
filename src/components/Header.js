@@ -6,17 +6,21 @@ const Header = () => {
     <header className="header-container">
       <nav className="header-nav">
         <div className="header-logo">
-          Your Logo or Site Name
+          {/* Your Logo */}
+          <img src="your-logo.png" alt="Your Logo" />
         </div>
         <ul className="header-menu">
           <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/services">Services</a></li>
+          <li><a href="/learn">Learn</a></li>
+          <li><a href="/certifications">Certifications</a></li>
+          <li><a href="/forum">Forum</a></li>
+          <li><a href="/news">News</a></li>
           <li><a href="/contact">Contact</a></li>
+          {/* Add more menu items as needed */}
         </ul>
         <div className="header-login">
-          <a href="/login">Login</a>
-          <a href="/signup">Sign Up</a>
+          <button>Login</button>
+          <button>Sign Up</button>
         </div>
       </nav>
     </header>

@@ -1,13 +1,6 @@
-/* App.css */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* Header Styles */
+/* Header.css */
 .header-container {
-  background-color: #333;
+  background-color: #0a192f;
   color: #fff;
   padding: 1rem;
 }
@@ -18,9 +11,8 @@ body {
   align-items: center;
 }
 
-.header-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.header-logo img {
+  height: 50px;
 }
 
 .header-menu {
@@ -49,21 +41,30 @@ body {
   text-decoration: underline;
 }
 
-.header-login {
-  /* Add styles for login/signup buttons or user profile dropdown */
+.header-login button {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #64ffda;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #0a192f;
 }
 
-/* Footer Styles */
+/* Footer.css */
 .footer-container {
-  background-color: #333;
+  background-color: #0a192f;
   color: #fff;
   padding: 2rem;
+}
+
+.footer-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .site-links ul,
-.contact-info,
 .social-media ul {
   list-style: none;
   padding: 0;
@@ -71,7 +72,7 @@ body {
 
 .site-links ul li,
 .social-media ul li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .site-links ul li a,
@@ -85,62 +86,14 @@ body {
   text-decoration: underline;
 }
 
-.contact-info h3,
-.social-media h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+.copy-right {
+  text-align: center;
+  margin-top: 2rem;
+  color: #666;
 }
 
-/* Main Styles */
+/* Main.css */
 .main-container {
   padding: 2rem;
 }
 
-.hero-section {
-  text-align: center;
-  padding: 3rem 0;
-}
-
-.hero-content h1 {
-  font-size: 2.5rem;
-}
-
-.hero-content p {
-  font-size: 1.25rem;
-  color: #666;
-}
-
-.features-section {
-  display: flex;
-  justify-content: space-around;
-  padding: 2rem 0;
-}
-
-.feature {
-  text-align: center;
-}
-
-.feature .icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.feature h2 {
-  font-size: 1.5rem;
-}
-
-.cta-section {
-  text-align: center;
-  background-color: #333;
-  color: #fff;
-  padding: 3rem 0;
-}
-
-.cta-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.cta-section p {
-  font-size: 1.25rem;
-}
