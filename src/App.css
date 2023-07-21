@@ -1,38 +1,146 @@
-.App {
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+.header-container {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-menu li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.header-menu li:last-child {
+  margin-right: 0;
+}
+
+.header-menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.header-menu li a:hover {
+  text-decoration: underline;
+}
+
+.header-login {
+  /* Add styles for login/signup buttons or user profile dropdown */
+}
+
+/* Footer Styles */
+.footer-container {
+  background-color: #333;
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.site-links ul,
+.contact-info,
+.social-media ul {
+  list-style: none;
+  padding: 0;
+}
+
+.site-links ul li,
+.social-media ul li {
+  margin-bottom: 1rem;
+}
+
+.site-links ul li a,
+.social-media ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-links ul li a:hover,
+.social-media ul li a:hover {
+  text-decoration: underline;
+}
+
+.contact-info h3,
+.social-media h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Main Styles */
+.main-container {
+  padding: 2rem;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  color: #666;
+}
+
+.features-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 0;
+}
+
+.feature {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.feature .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.feature h2 {
+  font-size: 1.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cta-section {
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  padding: 3rem 0;
 }
 
-.App-link {
-  color: #61dafb;
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cta-section p {
+  font-size: 1.25rem;
 }
