@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CourseList = () => {
   // Sample data for courses
@@ -24,6 +25,9 @@ const CourseList = () => {
           <li key={course.id}>
             <h3>{course.title}</h3>
             <p>{course.description}</p>
+            <Link to={`/certifications/${course.id}`}>
+              <button>View Details</button>
+            </Link>
           </li>
         ))}
       </ul>
