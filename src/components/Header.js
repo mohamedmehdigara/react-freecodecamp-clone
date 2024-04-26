@@ -21,6 +21,7 @@ const Header = () => {
         <div className="header-login">
           <button>Login</button>
           <button>Sign Up</button>
+          <a href="/profile">Profile</a>
         </div>
       </nav>
     </header>

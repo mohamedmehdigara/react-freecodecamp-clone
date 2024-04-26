@@ -5,6 +5,7 @@ import Main from './components/Main';
 import CourseList from './components/CourseList';
 import CourseDetail from './components/CourseDetail'; // Import CourseDetail component
 import Certifications from './components/Certifications';
+import UserProfile from './components/UserProfile';
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import './App.css';
 
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/learn" element={<CourseList />} />
           <Route path="/certifications" element={<Certifications />} /> {/* Add route for Certifications component */}
+          <Route path="/profile" element={<UserProfile />} /> {/* Add route for UserProfile component */}
 
           <Route path="/learn/:id" element={<CourseDetail />} />
         </Routes>
