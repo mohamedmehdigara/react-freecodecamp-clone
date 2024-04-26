@@ -2,7 +2,8 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
-import {Routes, Route, BrowserRouter as Router} from "react-router-dom";
+import CourseList from './components/CourseList'; // Import CourseList component
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import './App.css';
 
 const App = () => {
@@ -12,11 +13,11 @@ const App = () => {
         <Header/>
         
         <Routes>
-          <Route path="/" element={<Main />}/>
+          <Route path="/" element={<Main />} />
+          <Route path="/Certifications" element={<CourseList />} /> {/* Render CourseList component for /courses route */}
         </Routes>
         <Footer/>
       </Router>
-      
     </div>
   );
 };
