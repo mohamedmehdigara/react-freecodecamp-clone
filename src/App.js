@@ -15,8 +15,8 @@ const App = () => {
         
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/Certifications" element={<CourseList />} />
-          <Route path="/Certifications/:id" element={<CourseDetail />} /> {/* Dynamic route for CourseDetail */}
+          <Route path="/certifications" element={<CourseList />} />
+          <Route path="/certifications/:id" element={<CourseDetail />} />
         </Routes>
         <Footer/>
       </Router>
