@@ -1,13 +1,15 @@
 import React from 'react';
+import FreeCodeCampLogo from './FreecodecampLogo';
+
 
 
 const Header = () => {
   return (
     <header className="header-container">
       <nav className="header-nav">
-        <div className="header-logo">
+      <div className="header-logo"> 
           {/* Your Logo */}
-          <img src="your-logo.png" alt="Your Logo" />
+          <FreeCodeCampLogo/>
         </div>
         <ul className="header-menu">
           <li><a href="/">Home</a></li>

@@ -11,8 +11,11 @@
   align-items: center;
 }
 
-.header-logo img {
-  height: 50px;
+.header-logo {
+  height: auto; /* Allow the logo container to adjust its height based on the content */
+  width: 50px; /* Set a fixed width for the logo container */
+  color: green;
+  background-color: #fff;
 }
 
 .header-menu {
