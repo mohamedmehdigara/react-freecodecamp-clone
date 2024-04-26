@@ -25,7 +25,7 @@ const CourseList = () => {
           <li key={course.id}>
             <h3>{course.title}</h3>
             <p>{course.description}</p>
-            <Link to={`/certifications/${course.id}`}>
+            <Link to={`/learn/${course.id}`}>
               <button>View Details</button>
             </Link>
           </li>
