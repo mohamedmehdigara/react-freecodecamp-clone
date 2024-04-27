@@ -1,7 +1,7 @@
 import React from 'react';
+import { useParams, Navigate } from 'react-router-dom';
 
-const CourseDetail = ({ match }) => {
-  // Sample data for course details (You can fetch actual data from an API or use props)
+const CourseDetail = () => {
   const courses = {
     1: {
       title: "Introduction to JavaScript",
@@ -34,28 +34,22 @@ const CourseDetail = ({ match }) => {
     // Add more courses as needed
   };
 
-  // Extract course ID from URL params
-  const courseId = match?.params?.id;
+  const { id } = useParams();
+  const courseDetails = courses[id];
 
-  // Get course details based on the course ID
-  const courseDetails = courses[courseId];
-
-  // Function to format duration (e.g., 4 weeks -> 1 month)
   const formatDuration = (duration) => {
-    // Implement your logic to format duration here
+    // Add logic to format duration here if needed
     return duration;
   };
 
-  // Render course details or error message
-  if (!courseDetails) {
-    return <div>Invalid course ID</div>;
-  }
-
-  // Function to handle enrollment
   const handleEnroll = () => {
     // Implement logic to enroll user in course
     console.log(`Enrolled in course: ${courseDetails.title}`);
   };
+
+  if (!courseDetails) {
+    return <Navigate to="/" />; // Redirect to home page if course not found
+  }
 
   return (
     <div className="course-detail-container">
