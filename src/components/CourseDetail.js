@@ -1,7 +1,4 @@
 import React from 'react';
-import Feedback from './Feedback';
-import CourseEnrollment from './CourseEnrollment';
-
 
 const CourseDetail = ({ match }) => {
   // Sample data for course details (You can fetch actual data from an API or use props)
@@ -50,62 +47,51 @@ const CourseDetail = ({ match }) => {
   };
 
   // Render course details or error message
-  const renderContent = () => {
-    if (!courseDetails) {
-      return <div>Invalid course ID</div>;
-    }
+  if (!courseDetails) {
+    return <div>Invalid course ID</div>;
+  }
 
-    const handleFeedbackSubmit = (feedbackData) => {
-      // Implement feedback submission logic here
-      console.log("Feedback submitted:", feedbackData);
-    };
+  // Function to handle enrollment
+  const handleEnroll = () => {
+    // Implement logic to enroll user in course
+    console.log(`Enrolled in course: ${courseDetails.title}`);
+  };
 
-    const handleEnroll = (enrolledCourseId) => {
-      // Implement logic to update user's enrolled courses list
-      console.log(`Enrolled in course with ID: ${enrolledCourseId}`);
-    };
-
-    return (
-      <div className="course-detail-container">
-        <div className="course-header">
-          <h2>{courseDetails.title}</h2>
-          <p>{courseDetails.description}</p>
+  return (
+    <div className="course-detail-container">
+      <div className="course-header">
+        <h2>{courseDetails.title}</h2>
+        <p>{courseDetails.description}</p>
+      </div>
+      <div className="course-info">
+        <div>
+          <h3>Course Details</h3>
+          <p><strong>Duration:</strong> {formatDuration(courseDetails.duration)}</p>
+          <p><strong>Price:</strong> ${courseDetails.price}</p>
+          <p><strong>Rating:</strong> {courseDetails.rating} ({courseDetails.reviews} reviews)</p>
         </div>
-        <div className="course-info">
-          <div>
-            <h3>Course Details</h3>
-            <p><strong>Duration:</strong> {formatDuration(courseDetails.duration)}</p>
-            <p><strong>Price:</strong> ${courseDetails.price}</p>
-            <p><strong>Rating:</strong> {courseDetails.rating} ({courseDetails.reviews} reviews)</p>
-          </div>
-          <CourseEnrollment courseId={courseId} onEnroll={handleEnroll} />
-
-          <div>
-            <h3>Instructor</h3>
-            <div className="instructor-info">
-              <img src={courseDetails.instructor.image} alt={courseDetails.instructor.name} />
-              <div>
-                <p><strong>Name:</strong> {courseDetails.instructor.name}</p>
-                <p><strong>Bio:</strong> {courseDetails.instructor.bio}</p>
-              </div>
+        <div>
+          <h3>Instructor</h3>
+          <div className="instructor-info">
+            <img src={courseDetails.instructor.image} alt={courseDetails.instructor.name} />
+            <div>
+              <p><strong>Name:</strong> {courseDetails.instructor.name}</p>
+              <p><strong>Bio:</strong> {courseDetails.instructor.bio}</p>
             </div>
           </div>
         </div>
-        <div className="curriculum">
-          <h3>Curriculum</h3>
-          <ul>
-            {courseDetails.curriculum.map((lesson, index) => (
-              <li key={index}>{lesson}</li>
-            ))}
-          </ul>
-        </div>
-        <Feedback onSubmit={handleFeedbackSubmit} />
-
       </div>
-    );
-  };
-
-  return renderContent();
+      <div className="curriculum">
+        <h3>Curriculum</h3>
+        <ul>
+          {courseDetails.curriculum.map((lesson, index) => (
+            <li key={index}>{lesson}</li>
+          ))}
+        </ul>
+      </div>
+      <button onClick={handleEnroll}>Enroll in Course</button>
+    </div>
+  );
 };
 
 export default CourseDetail;
