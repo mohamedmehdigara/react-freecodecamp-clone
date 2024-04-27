@@ -1,5 +1,7 @@
 import React from 'react';
 import Feedback from './Feedback';
+import CourseEnrollment from './CourseEnrollment';
+
 
 const CourseDetail = ({ match }) => {
   // Sample data for course details (You can fetch actual data from an API or use props)
@@ -58,6 +60,11 @@ const CourseDetail = ({ match }) => {
       console.log("Feedback submitted:", feedbackData);
     };
 
+    const handleEnroll = (enrolledCourseId) => {
+      // Implement logic to update user's enrolled courses list
+      console.log(`Enrolled in course with ID: ${enrolledCourseId}`);
+    };
+
     return (
       <div className="course-detail-container">
         <div className="course-header">
@@ -71,6 +78,8 @@ const CourseDetail = ({ match }) => {
             <p><strong>Price:</strong> ${courseDetails.price}</p>
             <p><strong>Rating:</strong> {courseDetails.rating} ({courseDetails.reviews} reviews)</p>
           </div>
+          <CourseEnrollment courseId={courseId} onEnroll={handleEnroll} />
+
           <div>
             <h3>Instructor</h3>
             <div className="instructor-info">
