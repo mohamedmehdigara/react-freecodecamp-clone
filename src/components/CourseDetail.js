@@ -1,4 +1,5 @@
 import React from 'react';
+import Feedback from './Feedback';
 
 const CourseDetail = ({ match }) => {
   // Sample data for course details (You can fetch actual data from an API or use props)
@@ -52,6 +53,11 @@ const CourseDetail = ({ match }) => {
       return <div>Invalid course ID</div>;
     }
 
+    const handleFeedbackSubmit = (feedbackData) => {
+      // Implement feedback submission logic here
+      console.log("Feedback submitted:", feedbackData);
+    };
+
     return (
       <div className="course-detail-container">
         <div className="course-header">
@@ -84,6 +90,8 @@ const CourseDetail = ({ match }) => {
             ))}
           </ul>
         </div>
+        <Feedback onSubmit={handleFeedbackSubmit} />
+
       </div>
     );
   };
