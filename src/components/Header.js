@@ -2,26 +2,34 @@ import React, { useState } from 'react';
 import FreeCodeCampLogo from './FreecodecampLogo';
 import NotificationBell from './NotificationBell';
 import Notification from './Notification';
+import Settings from './Settings'; // Import the Settings component
 
 const Header = () => {
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showSettings, setShowSettings] = useState(false); // State for toggling Settings component
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
   };
 
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
+  };
+
+  // Notification data (if needed)
   const notifications = [
-    { id: 1, type: 'info', message: 'New course available: React Advanced Techniques' },
-    { id: 2, type: 'success', message: 'You completed the JavaScript Basics course!' },
-    { id: 3, type: 'warning', message: 'Forum activity: New discussion on React Hooks' },
-    { id: 4, type: 'error', message: 'Error: Unable to save your profile changes' },
+    { type: 'info', message: 'New course available: React Advanced Techniques' },
+    { type: 'success', message: 'You completed the JavaScript Basics course!' },
+    { type: 'warning', message: 'Forum activity: New discussion on React Hooks' },
+    { type: 'error', message: 'Error: Unable to save your profile changes' },
     // Add more notification objects as needed
   ];
-  
+
   return (
     <header className="header-container">
       <nav className="header-nav">
         <div className="header-logo"> 
+          {/* Your Logo */}
           <FreeCodeCampLogo />
         </div>
         <ul className="header-menu">
@@ -37,11 +45,15 @@ const Header = () => {
           <NotificationBell onClick={toggleNotifications} />
           {showNotifications && (
             <div className="notifications-list">
-              {notifications.map(notification => (
-                <Notification key={notification.id} type={notification.type} message={notification.message} />
+              {notifications.map((notification, index) => (
+                <Notification key={index} type={notification.type} message={notification.message} />
               ))}
             </div>
           )}
+        </div>
+        <div className="header-settings">
+          <button onClick={toggleSettings}>Settings</button> {/* Button to toggle Settings component */}
+          {showSettings && <Settings />} {/* Render Settings component if showSettings is true */}
         </div>
         <div className="header-login">
           <button>Login</button>
