@@ -24,6 +24,35 @@
   padding: 0;
 }
 
+.header-notifications {
+  position: relative;
+  background-color: #fff;
+}
+
+.notifications-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000; /* Ensure the notifications list is above other elements */
+}
+
+.notifications-list:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  border-width: 0 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+}
+
+
 .header-menu li {
   display: inline-block;
   margin-right: 1rem;

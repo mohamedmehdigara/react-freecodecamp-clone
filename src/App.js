@@ -8,6 +8,7 @@ import CourseDetail from './components/CourseDetail';
 import Certifications from './components/Certifications';
 import UserProfile from './components/UserProfile';
 import Search from './components/Search';
+import NotificationBell from './components/NotificationBell';
 import './App.css';
 
 const App = () => {
@@ -40,6 +41,8 @@ const App = () => {
       <Router>
         <Header />
         <Search onSearch={handleSearch} />
+        <NotificationBell />
+
 
         <Routes>
           <Route path="/" element={<Main />} />

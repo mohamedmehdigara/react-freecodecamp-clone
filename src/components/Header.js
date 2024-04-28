@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FreeCodeCampLogo from './FreecodecampLogo';
-
-
+import NotificationBell from './NotificationBell';
+import Notification from './Notification';
 
 const Header = () => {
+  const [showNotifications, setShowNotifications] = useState(false);
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  };
+
   return (
     <header className="header-container">
       <nav className="header-nav">
-      <div className="header-logo"> 
+        <div className="header-logo"> 
           {/* Your Logo */}
-          <FreeCodeCampLogo/>
+          <FreeCodeCampLogo />
         </div>
         <ul className="header-menu">
           <li><a href="/">Home</a></li>
@@ -20,6 +26,16 @@ const Header = () => {
           <li><a href="/contact">Contact</a></li>
           {/* Add more menu items as needed */}
         </ul>
+        <div className="header-notifications">
+          <NotificationBell onClick={toggleNotifications} />
+          {showNotifications && (
+            <div className="notifications-list">
+              {/* Render notifications here */}
+              <Notification type="info" message="New course available: React Advanced Techniques" />
+              {/* Add more notifications as needed */}
+            </div>
+          )}
+        </div>
         <div className="header-login">
           <button>Login</button>
           <button>Sign Up</button>
