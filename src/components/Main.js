@@ -1,9 +1,26 @@
 import React from 'react';
-
+import Carousel from './Carousel'; // Import the Carousel component
 
 const Main = () => {
+  // Sample data for featured courses
+  const featuredCourses = [
+    {
+      title: "React Fundamentals",
+      description: "Master the fundamentals of building web applications with React.",
+      image: "react-fundamentals.jpg"
+    },
+    {
+      title: "JavaScript Basics",
+      description: "Learn the basics of JavaScript programming language.",
+      image: "javascript-basics.jpg"
+    },
+    // Add more featured courses as needed
+  ];
+
   return (
     <main className="main-container">
+      <Carousel items={featuredCourses} /> {/* Replace this with the Carousel component */}
+
       <section className="hero-section">
         <div className="hero-content">
           <h1>Welcome to Our Website</h1>
