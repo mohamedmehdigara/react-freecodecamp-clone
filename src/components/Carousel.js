@@ -3,29 +3,23 @@ import React, { useState } from 'react';
 const Carousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrevClick = () => {
-    const newIndex = (currentIndex - 1 + items.length) % items.length;
-    setCurrentIndex(newIndex);
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
   };
 
-  const handleNextClick = () => {
-    const newIndex = (currentIndex + 1) % items.length;
-    setCurrentIndex(newIndex);
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === items.length - 1 ? 0 : prevIndex + 1));
   };
 
   return (
-    <div className="carousel">
-      <button onClick={handlePrevClick}>Previous</button>
-      <div className="carousel-content">
-        {items.map((item, index) => (
-          <div key={index} className={index === currentIndex ? 'slide active' : 'slide'}>
-            <img src={item.image} alt={item.title} />
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
-        ))}
+    <div className="carousel-container">
+      <button onClick={goToPrevious}>Previous</button>
+      <div className="carousel-item">
+        <img src={items[currentIndex].image} alt={items[currentIndex].title} />
+        <h3>{items[currentIndex].title}</h3>
+        <p>{items[currentIndex].description}</p>
       </div>
-      <button onClick={handleNextClick}>Next</button>
+      <button onClick={goToNext}>Next</button>
     </div>
   );
 };
