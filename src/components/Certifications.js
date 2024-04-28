@@ -1,7 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Certifications = () => {
-  // Sample data for certifications (You can fetch actual data from an API or use props)
+const Container = styled.div`
+  padding: 20px;
+`;
+
+const Title = styled.h2`
+  font-size: 24px;
+  margin-bottom: 20px;
+`;
+
+const CertificationItem = styled.div`
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+`;
+
+const CertificationTitle = styled.h3`
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+
+const CertificationDescription = styled.p`
+  font-size: 16px;
+`;
+
+const Certifications = ({  }) => {
   const certifications = [
     {
       name: "JavaScript Fundamentals",
@@ -17,18 +42,15 @@ const Certifications = () => {
   ];
 
   return (
-    <div className="certifications-container">
-      <h2>Certifications</h2>
-      <ul className="certifications-list">
-        {certifications.map((certification, index) => (
-          <li key={index}>
-            <h3>{certification.name}</h3>
-            <p><strong>Completion Date:</strong> {certification.completionDate}</p>
-            <a href={certification.verificationLink} target="_blank" rel="noopener noreferrer">Verify Certification</a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+      <Title>Certifications</Title>
+      {certifications&&certifications.map((certification, index) => (
+        <CertificationItem key={index}>
+          <CertificationTitle>{certification.title}</CertificationTitle>
+          <CertificationDescription>{certification.description}</CertificationDescription>
+        </CertificationItem>
+      ))}
+    </Container>
   );
 };
 
