@@ -10,11 +10,18 @@ const Header = () => {
     setShowNotifications(!showNotifications);
   };
 
+  const notifications = [
+    { id: 1, type: 'info', message: 'New course available: React Advanced Techniques' },
+    { id: 2, type: 'success', message: 'You completed the JavaScript Basics course!' },
+    { id: 3, type: 'warning', message: 'Forum activity: New discussion on React Hooks' },
+    { id: 4, type: 'error', message: 'Error: Unable to save your profile changes' },
+    // Add more notification objects as needed
+  ];
+  
   return (
     <header className="header-container">
       <nav className="header-nav">
         <div className="header-logo"> 
-          {/* Your Logo */}
           <FreeCodeCampLogo />
         </div>
         <ul className="header-menu">
@@ -30,9 +37,9 @@ const Header = () => {
           <NotificationBell onClick={toggleNotifications} />
           {showNotifications && (
             <div className="notifications-list">
-              {/* Render notifications here */}
-              <Notification type="info" message="New course available: React Advanced Techniques" />
-              {/* Add more notifications as needed */}
+              {notifications.map(notification => (
+                <Notification key={notification.id} type={notification.type} message={notification.message} />
+              ))}
             </div>
           )}
         </div>

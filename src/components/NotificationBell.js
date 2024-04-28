@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Notification from './NotificationBell';
+import Notification from './Notification'; // Correct import statement
 
 const NotificationBell = () => {
   const [notifications, setNotifications] = useState([]);
@@ -33,4 +33,3 @@ const NotificationBell = () => {
 };
 
 export default NotificationBell;
-
