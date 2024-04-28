@@ -36,9 +36,7 @@ const SettingsIcon = ({ onClick }) => {
   return (
     <div className="settings-icon">
       <span onClick={toggleSettings}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path fill="#fff" d="M12 2C6.48 2 2 6.48 2 12c0 2.59 1.05 5.2 3.04 7.07L12 22l6.96-2.93C20.95 17.2 22 14.59 22 12c0-5.52-4.48-10-10-10zm1 17h-2v-2h2v2zm0-4h-2v-6h2v6z"/>
-        </svg>
+        <button>Settings</button>
       </span>
       {showSettings && (
         <div className="settings-dropdown">
