@@ -1,87 +1,30 @@
 import React, { useState } from 'react';
+import ThemeSelector from './ThemeSelector';
+import LanguageSelector from './LanguageSelector';
 
-const Settings = () => {
-  // State variables for settings
-  const [notificationPreferences, setNotificationPreferences] = useState({
-    email: true,
-    push: false,
-    sms: false,
-  });
-  const [theme, setTheme] = useState('light');
-  const [language, setLanguage] = useState('en');
+const Settings = ({}) => {
+  const [showSettings, setShowSettings] = useState(false);
 
-  // Function to handle changes in notification preferences
-  const handleNotificationChange = (event) => {
-    const { name, checked } = event.target;
-    setNotificationPreferences({ ...notificationPreferences, [name]: checked });
-  };
-
-  // Function to handle theme change
-  const handleThemeChange = (event) => {
-    setTheme(event.target.value);
-  };
-
-  // Function to handle language change
-  const handleLanguageChange = (event) => {
-    setLanguage(event.target.value);
-  };
-
-  // Function to save settings (could be sent to backend)
-  const saveSettings = () => {
-    // Implement logic to save settings
-    console.log('Settings saved:', { notificationPreferences, theme, language });
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
   };
 
   return (
     <div className="settings-container">
-      <h2>Settings</h2>
-      <div className="notification-preferences">
-        <h3>Notification Preferences</h3>
-        <label>
-          <input
-            type="checkbox"
-            name="email"
-            checked={notificationPreferences.email}
-            onChange={handleNotificationChange}
-          />
-          Email
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="push"
-            checked={notificationPreferences.push}
-            onChange={handleNotificationChange}
-          />
-          Push Notification
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="sms"
-            checked={notificationPreferences.sms}
-            onChange={handleNotificationChange}
-          />
-          SMS
-        </label>
-      </div>
-      <div className="theme-selection">
-        <h3>Theme Selection</h3>
-        <select value={theme} onChange={handleThemeChange}>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
-      <div className="language-selection">
-        <h3>Language</h3>
-        <select value={language} onChange={handleLanguageChange}>
-          <option value="en">English</option>
-          <option value="fr">French</option>
-          <option value="es">Spanish</option>
-          {/* Add more language options as needed */}
-        </select>
-      </div>
-      <button onClick={saveSettings}>Save Settings</button>
+      <span className="settings-icon" onClick={toggleSettings}>
+        {/* Icon for settings */}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M19.25 12c0-.41-.16-.79-.43-1.07l1.42-1.42c.2-.2.2-.51 0-.71l-1.42-1.42c-.28-.28-.66-.43-1.07-.43l-1.42 1.42c-.2.2-.51.2-.71 0l-1.42-1.42c-.28-.28-.66-.43-1.07-.43s-.79.16-1.07.43l-1.42 1.42c-.2.2-.51.2-.71 0l-1.42-1.42c-.28-.28-.66-.43-1.07-.43s-.79.16-1.07.43l-1.42 1.42c-.2.2-.51.2-.71 0L4.18 8.5c-.28-.28-.43-.66-.43-1.07s.16-.79.43-1.07l1.42-1.42c.2-.2.2-.51 0-.71L4.18 3.5c-.28-.28-.43-.66-.43-1.07s.16-.79.43-1.07l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.28-.28.66-.43 1.07-.43s.79.16 1.07.43l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.28-.28.66-.43 1.07-.43s.79.16 1.07.43l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.28-.28.66-.43 1.07-.43s.79.16 1.07.43l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.28-.28.66-.43 1.07-.43s.79.16 1.07.43l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l.71-.71c.39-.39.39-1.02 0-1.41L20.66 3c-.39-.39-1.02-.39-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41z"/>
+        </svg>
+      </span>
+      {showSettings && (
+        <div className="settings-list">
+          <ThemeSelector />
+          <LanguageSelector />
+          {/* Add more settings options as needed */}
+        </div>
+      )}
     </div>
   );
 };

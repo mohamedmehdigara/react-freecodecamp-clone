@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import FreeCodeCampLogo from './FreecodecampLogo';
 import NotificationBell from './NotificationBell';
 import Notification from './Notification';
-import Settings from './Settings'; // Import the Settings component
+import SettingsIcon from './SettingsIcon'; // Import SettingsIcon component
+import Settings from './Settings'; // Import Settings component
+import LanguageSelector from './LanguageSelector'; // Import LanguageSelector component
+import ThemeSelector from './ThemeSelector';
+
 
 const Header = () => {
   const [showNotifications, setShowNotifications] = useState(false);
-  const [showSettings, setShowSettings] = useState(false); // State for toggling Settings component
+  const [showSettings, setShowSettings] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState('light');
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
@@ -16,13 +22,21 @@ const Header = () => {
     setShowSettings(!showSettings);
   };
 
-  // Notification data (if needed)
-  const notifications = [
-    { type: 'info', message: 'New course available: React Advanced Techniques' },
-    { type: 'success', message: 'You completed the JavaScript Basics course!' },
-    { type: 'warning', message: 'Forum activity: New discussion on React Hooks' },
-    { type: 'error', message: 'Error: Unable to save your profile changes' },
-    // Add more notification objects as needed
+  const handleThemeChange = (theme) => {
+    setSelectedTheme(theme);
+  };
+
+  const handleLanguageChange = (language) => {
+    setSelectedLanguage(language);
+  };
+
+  // Settings options
+  const settingsOptions = [
+    { label: 'Theme', component: <ThemeSelector selectedTheme={selectedTheme} onChange={handleThemeChange} /> },
+    { label: 'Language', component: (
+      <LanguageSelector selectedLanguage={selectedLanguage} onChange={handleLanguageChange} />
+    )},
+    // Add more settings options as needed
   ];
 
   return (
@@ -45,15 +59,24 @@ const Header = () => {
           <NotificationBell onClick={toggleNotifications} />
           {showNotifications && (
             <div className="notifications-list">
-              {notifications.map((notification, index) => (
-                <Notification key={index} type={notification.type} message={notification.message} />
-              ))}
+              {/* Render notifications here */}
+              <Notification type="info" message="New course available: React Advanced Techniques" />
+              {/* Add more notifications as needed */}
             </div>
           )}
         </div>
         <div className="header-settings">
-          <button onClick={toggleSettings}>Settings</button> {/* Button to toggle Settings component */}
-          {showSettings && <Settings />} {/* Render Settings component if showSettings is true */}
+          <SettingsIcon onClick={toggleSettings} /> {/* Render SettingsIcon component */}
+          {showSettings && (
+            <div className="settings-list">
+              {settingsOptions.map((option, index) => (
+                <div key={index}>
+                  <label>{option.label}</label>
+                  {option.component}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="header-login">
           <button>Login</button>

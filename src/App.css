@@ -12,8 +12,8 @@
 }
 
 .header-logo {
-  height: auto; /* Allow the logo container to adjust its height based on the content */
-  width: 50px; /* Set a fixed width for the logo container */
+  height: auto;
+  width: 50px;
   color: green;
   background-color: #fff;
 }
@@ -39,7 +39,7 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  z-index: 1000; /* Ensure the notifications list is above other elements */
+  z-index: 1000;
 }
 
 .notifications-list:before {
@@ -52,6 +52,32 @@
   border-color: transparent transparent #fff;
 }
 
+.header-settings {
+  position: relative;
+}
+
+.settings-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.settings-list:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  border-width: 0 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+}
 
 .header-menu li {
   display: inline-block;
@@ -128,4 +154,3 @@
 .main-container {
   padding: 2rem;
 }
-
