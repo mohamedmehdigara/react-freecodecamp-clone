@@ -1,25 +1,61 @@
 import React, { useState } from 'react';
-import Settings from './Settings';
 
-const SettingsIcon = () => {
+const SettingsIcon = ({ onClick }) => {
   const [showSettings, setShowSettings] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState('light');
 
   const toggleSettings = () => {
     setShowSettings(!showSettings);
   };
 
+  const handleThemeChange = (theme) => {
+    setSelectedTheme(theme);
+    // Apply theme change logic here (e.g., update CSS classes)
+    document.body.className = theme === 'light' ? '' : 'dark-theme';
+  };
+
+  const handleLanguageChange = (language) => {
+    // Implement language change logic here
+    console.log(`Selected language: ${language}`);
+  };
+
+  // Theme options
+  const themeOptions = [
+    { value: 'light', label: 'Light' },
+    { value: 'dark', label: 'Dark' },
+  ];
+
+  // Language options
+  const languageOptions = [
+    { value: 'en', label: 'English' },
+    { value: 'fr', label: 'French' },
+    { value: 'es', label: 'Spanish' },
+    // Add more language options as needed
+  ];
+
   return (
-    <div className="settings-icon-container">
-      <span className="settings-icon" onClick={toggleSettings}>
-        {/* Icon for settings */}
+    <div className="settings-icon">
+      <span onClick={toggleSettings}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M0 0h24v24H0z" fill="none"/>
-          <path d="M19.25 12c0-.41-.16-.79-.43-1.07l1.42-1.42c.2-.2.2-.51 0-.71l-1.42-1.42c-.28-.28-.66-.43-1.07-.43l-1.42 1.42c-.2.2-.51.2-.71 0l-1.42-1.42c-.28-.28-.66-.43-1.07-.43s-.79.16-1.07.43l-1.42 1.42c-.2.2-.51.2-.71 0l-1.42-1.42c-.28-.28-.66-.43-1.07-.43s-.79.16-1.07.43l-1.42 1.42c-.2.2-.51.2-.71 0L4.18 8.5c-.28-.28-.43-.66-.43-1.07s.16-.79.43-1.07l1.42-1.42c.2-.2.2-.51 0-.71L4.18 3.5c-.28-.28-.43-.66-.43-1.07s.16-.79.43-1.07l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.2.2.51.2.71 0l.71-.71c.39-.39.39-1.02 0-1.41L20.66 3c-.39-.39-1.02-.39-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41l1.42 1.42c.39.39.39 1.02 0 1.41l-.71.71c-.39.39-.39 1.02 0 1.41z"/>
+          <path fill="#fff" d="M12 2C6.48 2 2 6.48 2 12c0 2.59 1.05 5.2 3.04 7.07L12 22l6.96-2.93C20.95 17.2 22 14.59 22 12c0-5.52-4.48-10-10-10zm1 17h-2v-2h2v2zm0-4h-2v-6h2v6z"/>
         </svg>
       </span>
       {showSettings && (
-        <div className="settings-list">
-          <Settings />
+        <div className="settings-dropdown">
+          <div className="theme-options">
+            {themeOptions.map((option, index) => (
+              <button key={index} onClick={() => handleThemeChange(option.value)}>
+                {option.label}
+              </button>
+            ))}
+          </div>
+          <div className="language-options">
+            {languageOptions.map((option, index) => (
+              <button key={index} onClick={() => handleLanguageChange(option.value)}>
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>

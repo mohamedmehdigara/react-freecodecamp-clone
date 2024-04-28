@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import FreeCodeCampLogo from './FreecodecampLogo';
 import NotificationBell from './NotificationBell';
 import Notification from './Notification';
-import SettingsIcon from './SettingsIcon'; // Import SettingsIcon component
-import Settings from './Settings'; // Import Settings component
-import LanguageSelector from './LanguageSelector'; // Import LanguageSelector component
-import ThemeSelector from './ThemeSelector';
-
+import SettingsIcon from './SettingsIcon'; // Import the SettingsIcon component
+import ThemeSelector from './ThemeSelector'; // Import the ThemeSelector component
+import LanguageSelector from './LanguageSelector'; // Import the LanguageSelector component
 
 const Header = () => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -33,9 +31,7 @@ const Header = () => {
   // Settings options
   const settingsOptions = [
     { label: 'Theme', component: <ThemeSelector selectedTheme={selectedTheme} onChange={handleThemeChange} /> },
-    { label: 'Language', component: (
-      <LanguageSelector selectedLanguage={selectedLanguage} onChange={handleLanguageChange} />
-    )},
+    { label: 'Language', component: <LanguageSelector selectedLanguage={selectedLanguage} onChange={handleLanguageChange} /> },
     // Add more settings options as needed
   ];
 
@@ -66,7 +62,7 @@ const Header = () => {
           )}
         </div>
         <div className="header-settings">
-          <SettingsIcon onClick={toggleSettings} /> {/* Render SettingsIcon component */}
+          <SettingsIcon onClick={toggleSettings} /> {/* Use SettingsIcon instead of button */}
           {showSettings && (
             <div className="settings-list">
               {settingsOptions.map((option, index) => (
