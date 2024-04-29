@@ -22,10 +22,14 @@ const Header = () => {
 
   const handleThemeChange = (theme) => {
     setSelectedTheme(theme);
+    // Apply theme change logic here (e.g., update CSS classes)
+    document.body.className = theme === 'light' ? '' : 'dark-theme';
   };
 
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
+    // Implement language change logic here
+    console.log(`Selected language: ${language}`);
   };
 
   // Settings options
