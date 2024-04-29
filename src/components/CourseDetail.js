@@ -1,5 +1,6 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
+import CourseEnrollment from './CourseEnrollment';
 import styled from 'styled-components';
 
 const CourseDetailContainer = styled.div`
@@ -127,7 +128,8 @@ const CourseDetail = () => {
           ))}
         </ul>
       </Curriculum>
-      <button onClick={handleEnroll}>Enroll in Course</button>
+      <CourseEnrollment courseId={id} /> {/* Render the CourseEnrollment component */}
+    
     </CourseDetailContainer>
   );
 };
