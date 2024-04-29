@@ -13,7 +13,9 @@ import "./App.css";
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
-  
+  const [theme, setTheme] = useState('light');
+  const [language, setLanguage] = useState('en');
+
   const courses = [
     {
       id: 1,
@@ -24,35 +26,38 @@ const App = () => {
     // Other course objects
   ];
 
-  // Function to handle search
   const handleSearch = (searchTerm) => {
-    // Filter courses based on the search term
     const filteredCourses = courses.filter(course =>
       course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       course.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-    // Update searchResults with filtered courses
     setSearchResults(filteredCourses);
+  };
+
+  const handleThemeChange = (selectedTheme) => {
+    setTheme(selectedTheme);
+  };
+
+  const handleLanguageChange = (selectedLanguage) => {
+    setLanguage(selectedLanguage);
   };
 
   return (
     <div>
       <Router>
-        <Header />
+        <Header theme={theme} language={language} onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
         <Search onSearch={handleSearch} />
         <NotificationBell />
 
-
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main theme={theme} language={language} />} />
           <Route path="/learn" element={<CourseList courses={searchResults.length ? searchResults : courses} />} />
           <Route path="/certifications" element={<Certifications />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/learn/:id" element={<CourseDetail />} />
         </Routes>
 
-        <Footer />
+        <Footer theme={theme} language={language} onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
       </Router>
     </div>
   );
