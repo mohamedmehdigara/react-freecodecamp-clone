@@ -1,4 +1,34 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const EnrollmentContainer = styled.div`
+  /* Add your styles here */
+`;
+
+const EnrollButton = styled.button`
+  /* Add your styles here */
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #0056b3;
+  }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+`;
+
+const ErrorMessage = styled.p`
+  /* Add your styles here */
+  color: #dc3545;
+`;
 
 const CourseEnrollment = ({ courseId, onEnroll }) => {
   const [enrolled, setEnrolled] = useState(false);
@@ -20,18 +50,18 @@ const CourseEnrollment = ({ courseId, onEnroll }) => {
   };
 
   return (
-    <div>
+    <EnrollmentContainer>
       {enrolled ? (
         <p>You are enrolled in this course.</p>
       ) : (
         <>
-          <button onClick={handleEnroll} disabled={loading}>
+          <EnrollButton onClick={handleEnroll} disabled={loading}>
             {loading ? 'Enrolling...' : 'Enroll in Course'}
-          </button>
-          {error && <p>{error}</p>}
+          </EnrollButton>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
         </>
       )}
-    </div>
+    </EnrollmentContainer>
   );
 };
 

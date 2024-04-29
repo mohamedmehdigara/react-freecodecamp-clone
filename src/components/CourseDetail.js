@@ -1,5 +1,49 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const CourseDetailContainer = styled.div`
+  /* Add your styles here */
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const CourseHeader = styled.div`
+  /* Add your styles here */
+  margin-bottom: 20px;
+`;
+
+const CourseInfo = styled.div`
+  /* Add your styles here */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+const InstructorInfo = styled.div`
+  /* Add your styles here */
+  display: flex;
+  align-items: center;
+`;
+
+const Curriculum = styled.div`
+  /* Add your styles here */
+  margin-top: 20px;
+`;
+
+// Example styles:
+
+// CourseDetailContainer: Add padding, margin, border, etc. to the container.
+
+// CourseHeader: Add margin-bottom to create space between header and content.
+
+// CourseInfo: Use flexbox to align items evenly, adjust margin-bottom for spacing.
+
+// InstructorInfo: Use flexbox to align image and text, adjust styles as needed.
+
+// Curriculum: Add margin-top to create space between course info and curriculum.
 
 const CourseDetail = () => {
   const courses = {
@@ -52,12 +96,12 @@ const CourseDetail = () => {
   }
 
   return (
-    <div className="course-detail-container">
-      <div className="course-header">
+    <CourseDetailContainer className="course-detail-container">
+      <CourseHeader className="course-header">
         <h2>{courseDetails.title}</h2>
         <p>{courseDetails.description}</p>
-      </div>
-      <div className="course-info">
+      </CourseHeader>
+      <CourseInfo className="course-info">
         <div>
           <h3>Course Details</h3>
           <p><strong>Duration:</strong> {formatDuration(courseDetails.duration)}</p>
@@ -66,25 +110,25 @@ const CourseDetail = () => {
         </div>
         <div>
           <h3>Instructor</h3>
-          <div className="instructor-info">
+          <InstructorInfo className="instructor-info">
             <img src={courseDetails.instructor.image} alt={courseDetails.instructor.name} />
             <div>
               <p><strong>Name:</strong> {courseDetails.instructor.name}</p>
               <p><strong>Bio:</strong> {courseDetails.instructor.bio}</p>
             </div>
-          </div>
+          </InstructorInfo>
         </div>
-      </div>
-      <div className="curriculum">
+      </CourseInfo>
+      <Curriculum className="curriculum">
         <h3>Curriculum</h3>
         <ul>
           {courseDetails.curriculum.map((lesson, index) => (
             <li key={index}>{lesson}</li>
           ))}
         </ul>
-      </div>
+      </Curriculum>
       <button onClick={handleEnroll}>Enroll in Course</button>
-    </div>
+    </CourseDetailContainer>
   );
 };
 
