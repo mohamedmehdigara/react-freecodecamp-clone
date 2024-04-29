@@ -9,12 +9,22 @@ import Certifications from './components/Certifications';
 import UserProfile from './components/UserProfile';
 import Search from './components/Search';
 import NotificationBell from './components/NotificationBell';
+import ThemeSelector from './components/ThemeSelector';
+import LanguageSelector from './components/LanguageSelector';
 import "./App.css";
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [theme, setTheme] = useState('light');
   const [language, setLanguage] = useState('en');
+
+  const handleThemeChange = (selectedTheme) => {
+    setTheme(selectedTheme);
+  };
+
+  const handleLanguageChange = (selectedLanguage) => {
+    setLanguage(selectedLanguage);
+  };
 
   const courses = [
     {
@@ -34,18 +44,10 @@ const App = () => {
     setSearchResults(filteredCourses);
   };
 
-  const handleThemeChange = (selectedTheme) => {
-    setTheme(selectedTheme);
-  };
-
-  const handleLanguageChange = (selectedLanguage) => {
-    setLanguage(selectedLanguage);
-  };
-
   return (
-    <div>
+    <div className={`app-container ${theme}`}>
       <Router>
-        <Header theme={theme} language={language} onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
+        <Header onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
         <Search onSearch={handleSearch} />
         <NotificationBell />
 
@@ -57,7 +59,7 @@ const App = () => {
           <Route path="/learn/:id" element={<CourseDetail />} />
         </Routes>
 
-        <Footer theme={theme} language={language} onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
+        <Footer onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
       </Router>
     </div>
   );

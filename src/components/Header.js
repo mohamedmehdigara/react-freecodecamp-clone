@@ -6,11 +6,9 @@ import SettingsIcon from './SettingsIcon'; // Import the SettingsIcon component
 import ThemeSelector from './ThemeSelector'; // Import the ThemeSelector component
 import LanguageSelector from './LanguageSelector'; // Import the LanguageSelector component
 
-const Header = () => {
+const Header = ({ onThemeChange, onLanguageChange }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useState('light');
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
@@ -20,22 +18,10 @@ const Header = () => {
     setShowSettings(!showSettings);
   };
 
-  const handleThemeChange = (theme) => {
-    setSelectedTheme(theme);
-    // Apply theme change logic here (e.g., update CSS classes)
-    document.body.className = theme === 'light' ? '' : 'dark-theme';
-  };
-
-  const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
-    // Implement language change logic here
-    console.log(`Selected language: ${language}`);
-  };
-
   // Settings options
   const settingsOptions = [
-    { label: 'Theme', component: <ThemeSelector selectedTheme={selectedTheme} onChange={handleThemeChange} /> },
-    { label: 'Language', component: <LanguageSelector selectedLanguage={selectedLanguage} onChange={handleLanguageChange} /> },
+    { label: 'Theme', component: <ThemeSelector onChange={onThemeChange} /> },
+    { label: 'Language', component: <LanguageSelector onChange={onLanguageChange} /> },
     // Add more settings options as needed
   ];
 
@@ -43,7 +29,6 @@ const Header = () => {
     <header className="header-container">
       <nav className="header-nav">
         <div className="header-logo"> 
-          {/* Your Logo */}
           <FreeCodeCampLogo />
         </div>
         <ul className="header-menu">
