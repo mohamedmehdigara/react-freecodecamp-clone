@@ -1,6 +1,38 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
-const SettingsIcon = ({ onClick }) => {
+const StyledSettingsIcon = styled.div`
+  position: relative;
+`;
+
+const SettingsButton = styled.button`
+  background-color: white;
+  border: none;
+  color: #333;
+  cursor: pointer;
+`;
+
+const Dropdown = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: ${props => props.show ? 'block' : 'none'};
+`;
+
+const ThemeOptions = styled.div`
+  margin-bottom: 10px;
+`;
+
+const LanguageOptions = styled.div`
+  margin-top: 10px;
+`;
+
+const SettingsIcon = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState('light');
 
@@ -34,29 +66,25 @@ const SettingsIcon = ({ onClick }) => {
   ];
 
   return (
-    <div className="settings-icon">
-      <span onClick={toggleSettings}>
-        <button>Settings</button>
-      </span>
-      {showSettings && (
-        <div className="settings-dropdown">
-          <div className="theme-options">
-            {themeOptions.map((option, index) => (
-              <button key={index} onClick={() => handleThemeChange(option.value)}>
-                {option.label}
-              </button>
-            ))}
-          </div>
-          <div className="language-options">
-            {languageOptions.map((option, index) => (
-              <button key={index} onClick={() => handleLanguageChange(option.value)}>
-                {option.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
+    <StyledSettingsIcon>
+      <SettingsButton onClick={toggleSettings}>Settings</SettingsButton>
+      <Dropdown show={showSettings}>
+        <ThemeOptions>
+          {themeOptions.map((option, index) => (
+            <button key={index} onClick={() => handleThemeChange(option.value)}>
+              {option.label}
+            </button>
+          ))}
+        </ThemeOptions>
+        <LanguageOptions>
+          {languageOptions.map((option, index) => (
+            <button key={index} onClick={() => handleLanguageChange(option.value)}>
+              {option.label}
+            </button>
+          ))}
+        </LanguageOptions>
+      </Dropdown>
+    </StyledSettingsIcon>
   );
 };
 
