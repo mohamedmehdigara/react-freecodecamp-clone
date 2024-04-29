@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import CourseEnrollment from './CourseEnrollment';
 import CourseRatingAndReview from './CourseRatingAndReview';
-import ProgressTracker from './ProgressTracker';
 
 import styled from 'styled-components';
 
@@ -136,7 +135,6 @@ const CourseDetail = (courseId) => {
       </Curriculum>
       <CourseEnrollment courseId={id} /> {/* Render the CourseEnrollment component */}
       <h2>Course Progress</h2>
-      <ProgressTracker totalItems={totalItems} completedItems={completedItems} />
       <CourseRatingAndReview courseId={courseId} />
 
     </CourseDetailContainer>
