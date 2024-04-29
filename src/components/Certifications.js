@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// Styled components for the Certifications component
 const Container = styled.div`
   padding: 20px;
 `;
@@ -26,16 +27,22 @@ const CertificationDescription = styled.p`
   font-size: 16px;
 `;
 
-const Certifications = ({  }) => {
+// Function to open the verification link in a new tab
+const openVerificationLink = (link) => {
+  window.open(link, '_blank');
+};
+
+const Certifications = () => {
+  // Array of certifications data
   const certifications = [
     {
-      name: "JavaScript Fundamentals",
-      completionDate: "April 15, 2023",
+      title: "JavaScript Fundamentals",
+      description: "Completed on April 15, 2023. Covered the basics of JavaScript programming language.",
       verificationLink: "https://example.com/certification/jsfundamentals"
     },
     {
-      name: "React Developer Certification",
-      completionDate: "May 20, 2023",
+      title: "React Developer Certification",
+      description: "Completed on May 20, 2023. Demonstrated proficiency in building web applications with React.",
       verificationLink: "https://example.com/certification/reactdeveloper"
     },
     // Add more certifications as needed
@@ -44,10 +51,13 @@ const Certifications = ({  }) => {
   return (
     <Container>
       <Title>Certifications</Title>
-      {certifications&&certifications.map((certification, index) => (
+      {/* Map through the certifications array and render each certification item */}
+      {certifications.map((certification, index) => (
         <CertificationItem key={index}>
           <CertificationTitle>{certification.title}</CertificationTitle>
           <CertificationDescription>{certification.description}</CertificationDescription>
+          {/* Button to verify certification, opens the verification link in a new tab */}
+          <button onClick={() => openVerificationLink(certification.verificationLink)}>Verify</button>
         </CertificationItem>
       ))}
     </Container>

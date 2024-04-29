@@ -9,7 +9,7 @@ import Certifications from './components/Certifications';
 import UserProfile from './components/UserProfile';
 import Search from './components/Search';
 import NotificationBell from './components/NotificationBell';
-import './App.css';
+import "./App.css";
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
