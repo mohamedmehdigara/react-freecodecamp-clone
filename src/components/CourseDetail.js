@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import CourseEnrollment from './CourseEnrollment';
+import CourseRatingAndReview from './CourseRatingAndReview';
+
 import styled from 'styled-components';
 
 const CourseDetailContainer = styled.div`
@@ -46,7 +48,7 @@ const Curriculum = styled.div`
 
 // Curriculum: Add margin-top to create space between course info and curriculum.
 
-const CourseDetail = () => {
+const CourseDetail = (courseId) => {
   const courses = {
     1: {
       title: "Introduction to JavaScript",
@@ -129,7 +131,8 @@ const CourseDetail = () => {
         </ul>
       </Curriculum>
       <CourseEnrollment courseId={id} /> {/* Render the CourseEnrollment component */}
-    
+      <CourseRatingAndReview courseId={courseId} />
+
     </CourseDetailContainer>
   );
 };
