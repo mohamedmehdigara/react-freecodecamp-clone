@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import CourseEnrollment from './CourseEnrollment';
 import CourseRatingAndReview from './CourseRatingAndReview';
@@ -36,19 +36,7 @@ const Curriculum = styled.div`
   margin-top: 20px;
 `;
 
-// Example styles:
-
-// CourseDetailContainer: Add padding, margin, border, etc. to the container.
-
-// CourseHeader: Add margin-bottom to create space between header and content.
-
-// CourseInfo: Use flexbox to align items evenly, adjust margin-bottom for spacing.
-
-// InstructorInfo: Use flexbox to align image and text, adjust styles as needed.
-
-// Curriculum: Add margin-top to create space between course info and curriculum.
-
-const CourseDetail = (courseId) => {
+const CourseDetail = () => {
   const totalItems = 10; // Total number of items in the course
   const completedItems = 5; // Number of items completed by the user
 
@@ -92,9 +80,22 @@ const CourseDetail = (courseId) => {
     return duration;
   };
 
+  const [courseEnrolled, setCourseEnrolled] = useState(false);
+
+  // Use useEffect to automatically change courseEnrolled state after 3 seconds
+  useEffect(() => {
+    if (courseEnrolled) {
+      const timer = setTimeout(() => {
+        setCourseEnrolled(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [courseEnrolled]);
+
   const handleEnroll = () => {
     // Implement logic to enroll user in course
     console.log(`Enrolled in course: ${courseDetails.title}`);
+    setCourseEnrolled(true);
   };
 
   if (!courseDetails) {
@@ -133,10 +134,10 @@ const CourseDetail = (courseId) => {
           ))}
         </ul>
       </Curriculum>
-      <CourseEnrollment courseId={id} /> {/* Render the CourseEnrollment component */}
+      {!courseEnrolled && <CourseEnrollment courseId={id} onEnroll={handleEnroll} />} {/* Render the CourseEnrollment component only if course is not enrolled */}
+      {courseEnrolled && <Link to={`/course-content/${id}`}>Go to Course</Link>} {/* Render the "Go to Course" link only if course is enrolled */}
       <h2>Course Progress</h2>
-      <CourseRatingAndReview courseId={courseId} />
-
+      <CourseRatingAndReview id={id} />
     </CourseDetailContainer>
   );
 };
