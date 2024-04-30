@@ -1,5 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const CourseListContainer = styled.div`
+  /* Add your styles here */
+  padding: 20px;
+`;
+
+const CourseItem = styled.div`
+  /* Add your styles here */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+`;
+
+const CourseTitle = styled.h3`
+  /* Add your styles here */
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+
+const CourseDescription = styled.p`
+  /* Add your styles here */
+  font-size: 16px;
+`;
+
+const ViewDetailsButton = styled.button`
+  /* Add your styles here */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
 
 const CourseList = () => {
   // Sample data for courses
@@ -18,20 +58,20 @@ const CourseList = () => {
   ];
 
   return (
-    <div className="course-list-container">
+    <CourseListContainer>
       <h2>Available Courses</h2>
-      <ul className="course-list">
+      <div className="course-list">
         {courses.map(course => (
-          <li key={course.id}>
-            <h3>{course.title}</h3>
-            <p>{course.description}</p>
+          <CourseItem key={course.id}>
+            <CourseTitle>{course.title}</CourseTitle>
+            <CourseDescription>{course.description}</CourseDescription>
             <Link to={`/learn/${course.id}`}>
-              <button>View Details</button>
+              <ViewDetailsButton>View Details</ViewDetailsButton>
             </Link>
-          </li>
+          </CourseItem>
         ))}
-      </ul>
-    </div>
+      </div>
+    </CourseListContainer>
   );
 };
 
