@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProgressTracker from './ProgressTracker';
+import CourseNavigation from './CourseNavigation';
 
 const ContentContainer = styled.div`
   /* Add your styles here */
@@ -23,6 +24,7 @@ const CourseContentPage = () => {
       <ContentTitle>Course Content</ContentTitle>
       <ContentBody>
         {/* Add your course content here */}
+        <CourseNavigation/>
         <ProgressTracker/>
       </ContentBody>
     </ContentContainer>

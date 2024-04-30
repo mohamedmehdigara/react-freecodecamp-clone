@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import CourseEnrollment from './CourseEnrollment';
 import CourseRatingAndReview from './CourseRatingAndReview';
-
+import CourseNavigation from './CourseNavigation';
 import styled from 'styled-components';
 
 const CourseDetailContainer = styled.div`
-  /* Add your styles here */
   margin: 20px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -14,25 +13,21 @@ const CourseDetailContainer = styled.div`
 `;
 
 const CourseHeader = styled.div`
-  /* Add your styles here */
   margin-bottom: 20px;
 `;
 
 const CourseInfo = styled.div`
-  /* Add your styles here */
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 `;
 
 const InstructorInfo = styled.div`
-  /* Add your styles here */
   display: flex;
   align-items: center;
 `;
 
 const Curriculum = styled.div`
-  /* Add your styles here */
   margin-top: 20px;
 `;
 
@@ -103,12 +98,12 @@ const CourseDetail = () => {
   }
 
   return (
-    <CourseDetailContainer className="course-detail-container">
-      <CourseHeader className="course-header">
+    <CourseDetailContainer>
+      <CourseHeader>
         <h2>{courseDetails.title}</h2>
         <p>{courseDetails.description}</p>
       </CourseHeader>
-      <CourseInfo className="course-info">
+      <CourseInfo>
         <div>
           <h3>Course Details</h3>
           <p><strong>Duration:</strong> {formatDuration(courseDetails.duration)}</p>
@@ -117,7 +112,7 @@ const CourseDetail = () => {
         </div>
         <div>
           <h3>Instructor</h3>
-          <InstructorInfo className="instructor-info">
+          <InstructorInfo>
             <img src={courseDetails.instructor.image} alt={courseDetails.instructor.name} />
             <div>
               <p><strong>Name:</strong> {courseDetails.instructor.name}</p>
@@ -126,7 +121,7 @@ const CourseDetail = () => {
           </InstructorInfo>
         </div>
       </CourseInfo>
-      <Curriculum className="curriculum">
+      <Curriculum>
         <h3>Curriculum</h3>
         <ul>
           {courseDetails.curriculum.map((lesson, index) => (
@@ -137,7 +132,12 @@ const CourseDetail = () => {
       {!courseEnrolled && <CourseEnrollment courseId={id} onEnroll={handleEnroll} />} {/* Render the CourseEnrollment component only if course is not enrolled */}
       {courseEnrolled && <Link to={`/course-content/${id}`}>Go to Course</Link>} {/* Render the "Go to Course" link only if course is enrolled */}
       <h2>Course Progress</h2>
-      <CourseRatingAndReview id={id} />
+      <CourseRatingAndReview courseId={id} />
+      <CourseNavigation sections={[
+  { title: 'Section 1', link: '/course-content/section1' },
+  { title: 'Section 2', link: '/course-content/section2' },
+  // Add more sections as needed
+]} />
     </CourseDetailContainer>
   );
 };
