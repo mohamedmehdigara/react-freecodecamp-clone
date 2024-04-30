@@ -1,10 +1,73 @@
 import React, { useState } from 'react';
+import styled from 'styled-components'; // Import styled-components
 import FreeCodeCampLogo from './FreecodecampLogo';
 import NotificationBell from './NotificationBell';
 import Notification from './Notification';
 import SettingsIcon from './SettingsIcon'; // Import the SettingsIcon component
 import ThemeSelector from './ThemeSelector'; // Import the ThemeSelector component
 import LanguageSelector from './LanguageSelector'; // Import the LanguageSelector component
+
+// Styled components
+const HeaderContainer = styled.header`
+  /* Add your styles here */
+  background-color: black
+  padding: 10px;
+`;
+
+const Nav = styled.nav`
+  /* Add your styles here */
+  display: flex;
+  align-items: center;
+`;
+
+const HeaderLogo = styled.div`
+  /* Add your styles here */
+  margin-right: auto;
+`;
+
+const HeaderMenu = styled.ul`
+  /* Add your styles here */
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const HeaderMenuItem = styled.li`
+  /* Add your styles here */
+  margin-right: 20px;
+`;
+
+const HeaderNotifications = styled.div`
+  /* Add your styles here */
+  position: relative;
+  margin-left: 20px;
+`;
+
+const NotificationsList = styled.div`
+  /* Add your styles here */
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+`;
+
+const HeaderSettings = styled.div`
+  /* Add your styles here */
+  margin-left: 20px;
+`;
+
+const SettingsList = styled.div`
+  /* Add your styles here */
+`;
+
+const HeaderLogin = styled.div`
+  /* Add your styles here */
+  margin-left: auto;
+`;
 
 const Header = ({ onThemeChange, onLanguageChange }) => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -26,50 +89,50 @@ const Header = ({ onThemeChange, onLanguageChange }) => {
   ];
 
   return (
-    <header className="header-container">
-      <nav className="header-nav">
-        <div className="header-logo"> 
+    <HeaderContainer className="header-container">
+      <Nav className="header-nav">
+        <HeaderLogo className="header-logo">
           <FreeCodeCampLogo />
-        </div>
-        <ul className="header-menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/learn">Learn</a></li>
-          <li><a href="/certifications">Certifications</a></li>
-          <li><a href="/forum">Forum</a></li>
-          <li><a href="/news">News</a></li>
-          <li><a href="/contact">Contact</a></li>
+        </HeaderLogo>
+        <HeaderMenu className="header-menu">
+          <HeaderMenuItem><a href="/">Home</a></HeaderMenuItem>
+          <HeaderMenuItem><a href="/learn">Learn</a></HeaderMenuItem>
+          <HeaderMenuItem><a href="/certifications">Certifications</a></HeaderMenuItem>
+          <HeaderMenuItem><a href="/forum">Forum</a></HeaderMenuItem>
+          <HeaderMenuItem><a href="/news">News</a></HeaderMenuItem>
+          <HeaderMenuItem><a href="/contact">Contact</a></HeaderMenuItem>
           {/* Add more menu items as needed */}
-        </ul>
-        <div className="header-notifications">
+        </HeaderMenu>
+        <HeaderNotifications className="header-notifications">
           <NotificationBell onClick={toggleNotifications} />
           {showNotifications && (
-            <div className="notifications-list">
+            <NotificationsList className="notifications-list">
               {/* Render notifications here */}
               <Notification type="info" message="New course available: React Advanced Techniques" />
               {/* Add more notifications as needed */}
-            </div>
+            </NotificationsList>
           )}
-        </div>
-        <div className="header-settings">
+        </HeaderNotifications>
+        <HeaderSettings className="header-settings">
           <SettingsIcon onClick={toggleSettings} /> {/* Use SettingsIcon instead of button */}
           {showSettings && (
-            <div className="settings-list">
+            <SettingsList className="settings-list">
               {settingsOptions.map((option, index) => (
                 <div key={index}>
                   <label>{option.label}</label>
                   {option.component}
                 </div>
               ))}
-            </div>
+            </SettingsList>
           )}
-        </div>
-        <div className="header-login">
+        </HeaderSettings>
+        <HeaderLogin className="header-login">
           <button>Login</button>
           <button>Sign Up</button>
           <a href="/profile">Profile</a>
-        </div>
-      </nav>
-    </header>
+        </HeaderLogin>
+      </Nav>
+    </HeaderContainer>
   );
 };
 
