@@ -15,6 +15,7 @@ import CourseRatingAndReview from './components/CourseRatingAndReview';
 import ProgressTracker from './components/ProgressTracker';
 import CourseContentPage from './components/CourseContentPage';
 import CourseNavigation from './components/CourseNavigation';
+import DiscussionForum from "./components/DiscussionForum";
 
 import "./App.css";
 
@@ -65,6 +66,7 @@ const App = () => {
           <Route path="/rate-and-review" element={<CourseRatingAndReview />} />
           <Route path="/progress-tracker" element={<ProgressTracker />} />
           <Route path="/course-content/:id" element={<CourseContentPage />} /> {/* Route for CourseContentPage */}
+          <Route path="/Forum" element={<DiscussionForum/>} />
 
         </Routes>
 
