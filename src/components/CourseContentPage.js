@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ProgressTracker from './ProgressTracker';
 import CourseNavigation from './CourseNavigation';
+import Lesson from './Lesson';
 
 const ContentContainer = styled.div`
   padding: 20px;
@@ -42,12 +43,39 @@ const sections = [
 
 
 const CourseContentPage = () => {
+  const lessons = [
+    {
+      id: 1,
+      title: "Introduction to React",
+      duration: "1 hour",
+      description: "Learn the basics of React",
+      completed: false
+    },
+    {
+      id: 2,
+      title: "State Management in React",
+      duration: "2 hours",
+      description: "Understand how to manage state in React applications",
+      completed: true
+    },
+    // Add more lessons as needed
+  ];
+
   return (
     <ContentContainer>
       <ContentTitle>Course Content</ContentTitle>
       <ContentBody>
         <CourseNavigation sections={sections} /> {/* Pass course sections as prop */}
         {/* Add your course content here */}
+        {lessons.map(lesson => (
+        <Lesson
+          key={lesson.id}
+          title={lesson.title}
+          duration={lesson.duration}
+          description={lesson.description}
+          completed={lesson.completed}
+        />
+      ))}
         <ProgressTracker />
       </ContentBody>
     </ContentContainer>
