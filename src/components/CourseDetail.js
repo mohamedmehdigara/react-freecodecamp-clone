@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import CourseEnrollment from './CourseEnrollment';
 import CourseRatingAndReview from './CourseRatingAndReview';
-import CourseNavigation from './CourseNavigation';
+import CourseNavigation from './CourseNavigation'; // Import the CourseNavigation component
 import styled from 'styled-components';
 
 const CourseDetailContainer = styled.div`
@@ -32,43 +32,61 @@ const Curriculum = styled.div`
 `;
 
 const CourseDetail = () => {
-  const totalItems = 10; // Total number of items in the course
-  const completedItems = 5; // Number of items completed by the user
-
-  const courses = {
-    1: {
-      title: "Introduction to JavaScript",
-      description: "Learn the basics of JavaScript programming language.",
-      curriculum: ["Lesson 1: Introduction", "Lesson 2: Variables", "Lesson 3: Functions"],
-      instructor: {
-        name: "John Doe",
-        bio: "Experienced JavaScript developer with 10+ years of industry experience.",
-        image: "instructor.jpg"
-      },
-      price: 99.99,
-      duration: "4 weeks",
-      rating: 4.5,
-      reviews: 120
-    },
-    2: {
-      title: "React Fundamentals",
-      description: "Master the fundamentals of building web applications with React.",
-      curriculum: ["Lesson 1: Introduction to React", "Lesson 2: Components", "Lesson 3: State and Props"],
-      instructor: {
-        name: "Jane Smith",
-        bio: "Senior React developer with expertise in building complex UIs.",
-        image: "instructor2.jpg"
-      },
-      price: 129.99,
-      duration: "6 weeks",
-      rating: 4.8,
-      reviews: 150
-    }
-    // Add more courses as needed
-  };
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [courseDetails, setCourseDetails] = useState(null);
   const { id } = useParams();
-  const courseDetails = courses[id];
+
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      try {
+        // Simulate fetching course details from an API
+        const courses = {
+          1: {
+            title: "Introduction to JavaScript",
+            description: "Learn the basics of JavaScript programming language.",
+            curriculum: ["Lesson 1: Introduction", "Lesson 2: Variables", "Lesson 3: Functions"],
+            instructor: {
+              name: "John Doe",
+              bio: "Experienced JavaScript developer with 10+ years of industry experience.",
+              image: "instructor.jpg"
+            },
+            price: 99.99,
+            duration: "4 weeks",
+            rating: 4.5,
+            reviews: 120
+          },
+          2: {
+            title: "React Fundamentals",
+            description: "Master the fundamentals of building web applications with React.",
+            curriculum: ["Lesson 1: Introduction to React", "Lesson 2: Components", "Lesson 3: State and Props"],
+            instructor: {
+              name: "Jane Smith",
+              bio: "Senior React developer with expertise in building complex UIs.",
+              image: "instructor2.jpg"
+            },
+            price: 129.99,
+            duration: "6 weeks",
+            rating: 4.8,
+            reviews: 150
+          }
+          // Add more courses as needed
+        };
+        const details = courses[id];
+        if (details) {
+          setCourseDetails(details);
+        } else {
+          setError("Course not found");
+        }
+      } catch (error) {
+        setError("Failed to fetch course details");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourseDetails();
+  }, [id]);
 
   const formatDuration = (duration) => {
     // Add logic to format duration here if needed
@@ -77,21 +95,19 @@ const CourseDetail = () => {
 
   const [courseEnrolled, setCourseEnrolled] = useState(false);
 
-  // Use useEffect to automatically change courseEnrolled state after 3 seconds
-  useEffect(() => {
-    if (courseEnrolled) {
-      const timer = setTimeout(() => {
-        setCourseEnrolled(false);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [courseEnrolled]);
-
   const handleEnroll = () => {
     // Implement logic to enroll user in course
     console.log(`Enrolled in course: ${courseDetails.title}`);
     setCourseEnrolled(true);
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   if (!courseDetails) {
     return <Navigate to="/" />; // Redirect to home page if course not found
@@ -129,15 +145,11 @@ const CourseDetail = () => {
           ))}
         </ul>
       </Curriculum>
-      {!courseEnrolled && <CourseEnrollment courseId={id} onEnroll={handleEnroll} />} {/* Render the CourseEnrollment component only if course is not enrolled */}
-      {courseEnrolled && <Link to={`/course-content/${id}`}>Go to Course</Link>} {/* Render the "Go to Course" link only if course is enrolled */}
+      {!courseEnrolled && <CourseEnrollment courseId={id} onEnroll={handleEnroll} />}
+      {courseEnrolled && <Link to={`/course-content/${id}`}>Go to Course</Link>}
       <h2>Course Progress</h2>
       <CourseRatingAndReview courseId={id} />
-      <CourseNavigation sections={[
-  { title: 'Section 1', link: '/course-content/section1' },
-  { title: 'Section 2', link: '/course-content/section2' },
-  // Add more sections as needed
-]} />
+      <CourseNavigation sections={courseDetails.curriculum} /> {/* Pass curriculum sections to CourseNavigation */}
     </CourseDetailContainer>
   );
 };
