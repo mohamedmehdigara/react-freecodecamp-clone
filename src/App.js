@@ -21,6 +21,7 @@ import { ToastContainer } from 'react-toastify';
 import SupportTicketAdminPanel from './components/SupportTicketAdminPanel';
 import SupportTicketDashboard from './components/SupportTicketDashboard';
 import SupportTicketAnalytics from './components/SupportTicketAnalytics';
+import Support from './components/Support';
 
 import "./App.css";
 
@@ -76,6 +77,8 @@ const App = () => {
           <Route path="/dashboard" element={<SupportTicketDashboard/>} />
           <Route path="/admin-panel" element={<SupportTicketAdminPanel/>} />
           <Route path="/analytics" element={<SupportTicketAnalytics/>} />
+          <Route path="/Support" element={<Support/>} />
+
 
         </Routes>
         <ToastContainer />
