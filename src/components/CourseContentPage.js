@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ProgressTracker from './ProgressTracker';
 import CourseNavigation from './CourseNavigation';
 import Lesson from './Lesson';
+import QuizPage from './QuizPage';
 
 const ContentContainer = styled.div`
   padding: 20px;
@@ -41,25 +42,27 @@ const sections = [
   // Add more sections as needed
 ];
 
+const lessons = [
+  {
+    id: 1,
+    title: "Introduction to React",
+    duration: "1 hour",
+    description: "Learn the basics of React",
+    completed: false
+  },
+  {
+    id: 2,
+    title: "State Management in React",
+    duration: "2 hours",
+    description: "Understand how to manage state in React applications",
+    completed: true
+  },
+  // Add more lessons as needed
+];
+
 
 const CourseContentPage = () => {
-  const lessons = [
-    {
-      id: 1,
-      title: "Introduction to React",
-      duration: "1 hour",
-      description: "Learn the basics of React",
-      completed: false
-    },
-    {
-      id: 2,
-      title: "State Management in React",
-      duration: "2 hours",
-      description: "Understand how to manage state in React applications",
-      completed: true
-    },
-    // Add more lessons as needed
-  ];
+  
 
   return (
     <ContentContainer>
@@ -76,6 +79,7 @@ const CourseContentPage = () => {
           completed={lesson.completed}
         />
       ))}
+      <QuizPage/>
         <ProgressTracker />
       </ContentBody>
     </ContentContainer>

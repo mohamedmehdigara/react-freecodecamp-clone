@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styled from 'styled-components';
 
 const LessonContainer = styled.div`
@@ -44,7 +43,6 @@ const Lesson = ({ title, duration, description, completed }) => {
         },
         // Add more lessons as needed
       ];
-
   return (
     <LessonContainer>
       <LessonTitle>{title}</LessonTitle>
@@ -52,7 +50,6 @@ const Lesson = ({ title, duration, description, completed }) => {
       <LessonDescription>{description}</LessonDescription>
       <LessonCompletionStatus completed={completed}>
         {completed ? 'Completed' : 'Incomplete'}
-       
       </LessonCompletionStatus>
     </LessonContainer>
   );

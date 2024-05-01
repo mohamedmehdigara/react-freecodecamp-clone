@@ -65,7 +65,7 @@ const App = () => {
           <Route path="/rate-and-review" element={<CourseRatingAndReview />} />
           <Route path="/progress-tracker" element={<ProgressTracker />} />
           <Route path="/course-content/:id" element={<CourseContentPage />} /> {/* Route for CourseContentPage */}
-     
+
         </Routes>
 
         <Footer onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
