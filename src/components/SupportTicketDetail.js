@@ -67,6 +67,11 @@ const SupportTicketDetail = ({ ticket, onUpdateStatus, onAddComment }) => {
     setComment('');
   };
 
+  const handleUpdateTicket = () => {
+    // Update ticket logic...
+    NotificationService.success('Ticket updated successfully!');
+  };
+
   return (
     <TicketDetailContainer>
       <TicketHeader>
@@ -106,6 +111,9 @@ const SupportTicketDetail = ({ ticket, onUpdateStatus, onAddComment }) => {
             ))}
           </div>
         )}
+
+<button onClick={handleUpdateTicket}>Update Ticket</button>
+
       </TicketComments>
     </TicketDetailContainer>
   );

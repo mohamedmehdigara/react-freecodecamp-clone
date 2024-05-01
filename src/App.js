@@ -17,6 +17,10 @@ import CourseContentPage from './components/CourseContentPage';
 import CourseNavigation from './components/CourseNavigation';
 import DiscussionForum from "./components/DiscussionForum";
 import CareerCenter from './components/CareerCenter';
+import { ToastContainer } from 'react-toastify';
+import SupportTicketAdminPanel from './components/SupportTicketAdminPanel';
+import SupportTicketDashboard from './components/SupportTicketDashboard';
+import SupportTicketAnalytics from './components/SupportTicketAnalytics';
 
 import "./App.css";
 
@@ -69,9 +73,12 @@ const App = () => {
           <Route path="/course-content/:id" element={<CourseContentPage />} /> {/* Route for CourseContentPage */}
           <Route path="/Forum" element={<DiscussionForum/>} />
           <Route path="/CareerCenter" element ={<CareerCenter />} />
-
+          <Route path="/dashboard" element={<SupportTicketDashboard/>} />
+          <Route path="/admin-panel" element={<SupportTicketAdminPanel/>} />
+          <Route path="/analytics" element={<SupportTicketAnalytics/>} />
 
         </Routes>
+        <ToastContainer />
 
         <Footer onThemeChange={handleThemeChange} onLanguageChange={handleLanguageChange} />
       </Router>
