@@ -101,6 +101,8 @@ const Header = ({ onThemeChange, onLanguageChange }) => {
           <HeaderMenuItem><a href="/forum">Forum</a></HeaderMenuItem>
           <HeaderMenuItem><a href="/news">News</a></HeaderMenuItem>
           <HeaderMenuItem><a href="/contact">Contact</a></HeaderMenuItem>
+          <HeaderMenuItem><a href="/CareerCenter">Career Center</a></HeaderMenuItem>
+
           {/* Add more menu items as needed */}
         </HeaderMenu>
         <HeaderNotifications className="header-notifications">
