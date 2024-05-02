@@ -50,7 +50,7 @@ const SupportTicketList = ({ tickets, onTicketClick }) => {
 
   return (
     <TicketListContainer>
-      {tickets.map(ticket => (
+      {tickets&&tickets.map(ticket => (
         <TicketItem key={ticket.id} onClick={() => onTicketClick(ticket)}>
           <TicketSubject>{ticket.subject}</TicketSubject>
           <TicketStatus status={ticket.status}>{ticket.status}</TicketStatus>

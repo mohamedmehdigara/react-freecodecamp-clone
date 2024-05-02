@@ -1,6 +1,10 @@
 import React from 'react';
 
 const SupportTicketAssign = ({ ticket, assignee, onAssign }) => {
+  if (!ticket || typeof ticket !== 'object') {
+    return <div>No ticket found</div>; // Or handle the undefined case appropriately
+  }
+  
   return (
     <div className="support-ticket-assign">
       <h3>Assign Ticket</h3>

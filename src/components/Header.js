@@ -102,6 +102,7 @@ const Header = ({ onThemeChange, onLanguageChange }) => {
           <HeaderMenuItem><a href="/news">News</a></HeaderMenuItem>
           <HeaderMenuItem><a href="/contact">Contact</a></HeaderMenuItem>
           <HeaderMenuItem><a href="/CareerCenter">Career Center</a></HeaderMenuItem>
+          <HeaderMenuItem><a href="/Support">Support</a></HeaderMenuItem>
 
           {/* Add more menu items as needed */}
         </HeaderMenu>

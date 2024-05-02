@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import NotificationService from './NotificationService'; // Import NotificationService
+
 import styled from 'styled-components';
 
 const TicketDetailContainer = styled.div`
@@ -54,6 +56,10 @@ const TicketComments = styled.div`
 const SupportTicketDetail = ({ ticket, onUpdateStatus, onAddComment }) => {
   const [comment, setComment] = useState('');
 
+  if (!ticket) {
+    return <div>Loading...</div>; // Or handle the null case appropriately
+  }
+
   const handleStatusUpdate = (status) => {
     // Call the onUpdateStatus callback with the new status
     onUpdateStatus(ticket.id, status);
@@ -70,6 +76,12 @@ const SupportTicketDetail = ({ ticket, onUpdateStatus, onAddComment }) => {
   const handleUpdateTicket = () => {
     // Update ticket logic...
     NotificationService.success('Ticket updated successfully!');
+  };
+
+  const handleUpdate = () => {
+    // Update ticket logic
+    // Show notification after updating ticket
+    NotificationService.show('Ticket updated successfully!', 'success');
   };
 
   return (
@@ -109,6 +121,9 @@ const SupportTicketDetail = ({ ticket, onUpdateStatus, onAddComment }) => {
                 <div>Posted by: {comment.user}</div>
               </div>
             ))}
+
+<button onClick={handleUpdate}>Update Ticket</button>
+
           </div>
         )}
 
